@@ -127,3 +127,12 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#ignoring dsStore
+.DS_Store
+
+#ignore untitled
+
+Untitle*.ipynb
+
+
