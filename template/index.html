@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Film Review Sentiment Analysis</title>
+    <link
+      rel = "stylesheet"
+      href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <link rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel = "stylesheet" href = "../static/style.css"/>
+    <script src = "../javascript/dashboard.js" ></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src = "https://cdn.plot.ly/plotly-2.11.1.min.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+    <!-- Add Jumbotron to Header -->
+        <div class="jumbotron text-center headerStyle">
+            <h1>Film Review Sentiment Analysis</h1>
+            <h2>                        
+                <i style="font-size:24px" class="fa">&#xf087;</i>
+                By Amewsing Corgis
+                <i style="font-size:25px" class="fa">&#xf088;</i>
+            </h2>
+        </div>
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav" id ="navList" onclick="activeLink(event)">
+                    <li><a href="index.html" class = "active">Home</a></li>
+                    <li><a href="#">Review</a></li>
+                    <li><a href="#">Practice Data</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-10" id = "description">
+                    Please enter a message in the text box below and press the "Analyze" button. 
+                    We will perform a sentiment analysis of you message using a natural language processing library 
+                    called Hugging Face. Using this interface we will attempt to tell, whether the message you entered
+                    is positive or negative. We will also display a plotly bar chart that explains the accuracy 
+                    of the sentiment analysis of your text. We also show the emotions behind your message.
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-10">
+                    <textarea class="form-control textAreaStyle" rows="6" id = "msgToAnalyze" placeholder="Please write your message here"></textarea>
+                </div>
+                <div class="col-xs-2 justify-content-around d-flex flex-column">
+                    <div>
+                        <button id= "analyzeBtn" class="btn btn-success btn-sm" type="button" onclick="analyzeContent()">Analyze</button>
+                        <button id= "loadingBtn"class="btn btn-success btn-sm buttonload">
+                            <i class="fa fa-circle-o-notch fa-spin"></i> Analyzing your text...
+                          </button>
+                    </div>
+                    <div>
+                        <button id = "clearBtn" class="btn btn-info btn-sm" type="button" onclick="clearContent()">Clear</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-10" id="result">
+                    <div id="PositiveResultStyle" rows="6" >
+                        <span>Overall sentiment analysis of your text is : Positive</span>
+                        <i style="font-size:24px" class="fa">&#xf087;</i>
+                    </div>
+                    <div id="NegativeResultStyle" rows="6">
+                        <span>Overall sentiment analysis of your text is : Negative</span>
+                        <i style="font-size:25px" class="fa">&#xf088;</i>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id ="plotyContainer">
+                    <div id="plotlyBar" class="col-xs"></div>
+                    <div id="plotlyPie" class="col-xs">
+                        <span id="errorMsgEmotion">Sorry we could not find the emotion behind this message.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
