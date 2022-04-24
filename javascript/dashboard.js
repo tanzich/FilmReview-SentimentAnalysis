@@ -79,6 +79,7 @@ function showPlotlyChart(posPercentage,negPercentage){
 
       const config = {responsive: true}
       document.getElementById("plotyContainer").style.display = "block";
+      document.getElementById("PositiveResultStyle").style.display = "none";
       Plotly.newPlot('plotlyBar', data, layout, config);
 }
 
