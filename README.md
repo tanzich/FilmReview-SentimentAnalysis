@@ -37,7 +37,7 @@ In this work flow, we see that :
 - Backend connects back to the HTML with the respond. 
 
 # Conclusion
-The dashboard currently is a work in progress. In the future, we hope to add more functionality and provide a even deeper analysis of user's sentiment. 
+The dashboard currently is a work in progress. In the future, we hope to add more functionality and provide a deeper analysis of user's sentiment. 
 
 
 
