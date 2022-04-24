@@ -1,0 +1,83 @@
+html{
+    margin:20px;
+}
+
+body{
+    background-color: #EDE8E1;
+}
+
+.jumbotron {
+    background-color: #B1DEE0;
+    /* background:#B1DEE0 url("../Img/Bg6.png") no-repeat; */
+}
+
+.headerStyle {
+    margin-bottom:10px !important;
+    padding-top: 10px;
+}
+
+.navbar{
+    background-color: #B1DEE0;
+}
+
+.navbar-default .navbar-nav li a{
+    color: #000b0c;
+    font-weight: bold;
+}
+
+.active {
+    text-decoration: underline;
+  }
+
+.navbar-default .navbar-nav li a:hover {
+	background-color:#EDE8E1;
+	height: 100%;
+}
+
+#description{
+    margin: 20px;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.textAreaStyle{
+    margin: 15px;
+    resize: none;
+}
+
+.btn-success{
+    margin-top: 15px; 
+    width:70px;
+}
+
+.btn-info{
+    margin-top:10px;
+    width:70px;
+}
+
+#result{
+    height: 40px;
+}
+
+#PositiveResultStyle, #NegativeResultStyle{
+    margin-left: 15px;
+    display:none
+}
+
+#loadingBtn{
+    width: 150px; 
+    display: none;
+}
+
+#plotyContainer {
+    margin: 30px;
+}
+
+#plotlyPie {
+    margin-top:15px
+}
+
+#errorMsgEmotion { 
+    color: red;
+    display: none;
+}
