@@ -20,7 +20,7 @@
     <div class="wrapper">
     <!-- Add Jumbotron to Header -->
         <div class="jumbotron text-center headerStyle">
-            <h1>Film Review Sentiment Analysis</h1>
+            <h1>Sentiment Analysis</h1>
             <h2>                        
                 <i style="font-size:24px" class="fa">&#xf087;</i>
                 By Amewsing Corgis
@@ -40,8 +40,8 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav" id ="navList" onclick="activeLink(event)">
                     <li><a href="index.html" class = "active">Home</a></li>
-                    <li><a href="#">Review</a></li>
-                    <li><a href="#">Practice Data</a></li>
+                    <li><a href="review.html">Review</a></li>
+                    <li><a href="upload_review.html">Summary Data</a></li>
                 </ul>
             </div>
         </nav>
@@ -52,9 +52,8 @@
                     Please enter a message in the text box below and press the "Analyze" button. 
                     We will perform a sentiment analysis of you message using a natural language processing library 
                     called Hugging Face. Using this interface we will attempt to tell, whether the message you entered
-                    is positive or negative. We will also display a plotly bar chart that explains the accuracy 
-                    of the sentiment analysis of your text. We also show the emotions behind your message.
-                    
+                    is positive or negative. We will also display plotly charts that explains the accuracy 
+                    of the sentiment analysis of your text and shows the emotions behind your message.
                 </div>
             </div>
             <div class="row">
@@ -63,7 +62,7 @@
                 </div>
                 <div class="col-xs-2 justify-content-around d-flex flex-column">
                     <div>
-                        <button id= "analyzeBtn" class="btn btn-success btn-sm" type="button" onclick="analyzeContent()">Analyze</button>
+                        <button id= "analyzeBtn" class="btn btn-success btn-sm" type="button" onclick="cleanAndAnalyze()">Analyze</button>
                         <button id= "loadingBtn"class="btn btn-success btn-sm buttonload">
                             <i class="fa fa-circle-o-notch fa-spin"></i> Analyzing your text...
                           </button>
@@ -75,6 +74,12 @@
             </div>
             <div class="row">
                 <div class="col-xs-10" id="result">
+                    <div id="errorMsg">
+                        Please check if you have entered a correct sentence or word.
+                    </div>
+                    <div style="margin-left:15px">
+                        Your clean sentence is: <span id="cleanMsg"></span>
+                    </div>
                     <div id="PositiveResultStyle" rows="6" >
                         <span>Overall sentiment analysis of your text is : Positive</span>
                         <i style="font-size:24px" class="fa">&#xf087;</i>
@@ -86,10 +91,14 @@
                 </div>
             </div>
             <div class="row">
-                <div id ="plotyContainer">
-                    <div id="plotlyBar" class="col-xs"></div>
-                    <div id="plotlyPie" class="col-xs">
-                        <span id="errorMsgEmotion">Sorry we could not find the emotion behind this message.</span>
+                <div id ="plotyContainer" class="col-xs-10">
+                    <div class="row">
+                        <div id="plotlyBar" class="col"></div>
+                    </div>
+                    <div class="row">
+                        <div id="plotlyPie" class="col">
+                            <span id="errorMsgEmotion">Sorry we could not find the emotion behind this message.</span>
+                        </div>
                     </div>
                 </div>
             </div>

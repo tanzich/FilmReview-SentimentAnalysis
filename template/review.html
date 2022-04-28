@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Film Review Sentiment Analysis</title>
+    <link
+      rel = "stylesheet"
+      href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <link rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel = "stylesheet" href = "../static/style.css"/>
+    <script src = "../javascript/dashboard.js" ></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src = "https://cdn.plot.ly/plotly-2.11.1.min.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+    <!-- Add Jumbotron to Header -->
+        <div class="jumbotron text-center headerStyle">
+            <h1>Sentiment Analysis</h1>
+            <h2>                        
+                <i style="font-size:24px" class="fa">&#xf087;</i>
+                By Amewsing Corgis
+                <i style="font-size:25px" class="fa">&#xf088;</i>
+            </h2>
+        </div>
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav" id ="navList" onclick="activeLink(event)">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="review.html" class = "active">Review</a></li>
+                    <li><a href="upload_review.html">Summary Data</a></li>
+                </ul>
+            </div>
+        </nav>
+        <h3 class="text-center">Please select an item to Review</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-11" id = "description">
+                    In this page, you can review any product, movie or even a tv show. Please select
+                    a category and then an item to review. 
+                </div>
+            </div>
+            <div class="col-xs-10">
+                <div class="dropdown">
+                    <a id="dropdownInfo" role="button" data-toggle="dropdown" class="btn btn-secondary btn-md" data-target="#">
+                        Please select an item to review <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                    <li class="dropdown-submenu">
+                        <a href="#">Technology</a>
+                        <ul onclick="selectedItem(this)" class="dropdown-menu">
+                        <li><a href="#">IPhone 13 </a></li>
+                        <li><a href="#">IPad.</a></li>
+                        <li><a href="#">Samsung</a></li>
+                        <li><a href="#">PlayStation</a></li>
+                        </ul>
+                    </li>                  
+                    <li class="dropdown-submenu">
+                        <a href="#">TV Shows</a>
+                        <ul onclick="selectedItem(this)" class="dropdown-menu">
+                        <li><a href="#">The Office</a></li>
+                        <li><a href="#">Park and Recreation</a></li>
+                        <li><a href="#">Psych</a></li>
+                        <li><a href="#">Big Bang Theory</a></li>
+                        </ul>
+                    </li>                  
+                    <li class="dropdown-submenu">
+                        <a href="#">Movie</a>
+                        <ul onclick="selectedItem(this)" class="dropdown-menu">
+                        <li><a href="#">Harry Potter</a></li>
+                        <li><a href="#">Jurassic Park</a></li>
+                        <li><a href="#">Die Hard</a></li>
+                        <li><a href="#">UP</a></li>
+                        </ul>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-10">
+                <h5 id = "selectionText"></h5>
+            </div>
+            <div class="col-xs-10">
+                <textarea class="form-control revAreaStyle" rows="6" id = "msgToAnalyze" placeholder="Please write your message here"></textarea>
+            </div>
+            <div class="col-xs-2 justify-content-around d-flex flex-column">
+                <div>
+                    <button id= "analyzeBtn" class="btn btn-success btn-sm" type="button" onclick="cleanDate_Rev()">Review</button>
+                    <button id= "loadingBtn"class="btn btn-success btn-sm buttonload">
+                        <i class="fa fa-circle-o-notch fa-spin"></i> Analyzing your text...
+                    </button>
+                </div>
+                <div>
+                    <button id = "clearBtn" class="btn btn-info btn-sm" type="button" onclick="clearContent()">Clear</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-10" id="result" style="overflow: auto;">
+                    <div id="errorMsg">
+                        Please check if you have entered a correct sentence or word.
+                    </div>
+                    <div style="margin-left:15px">
+                        Your clean sentence is: <span id="cleanMsg"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id ="plotyContainer" class="col-xs-10">
+                    <div class="row">
+                        <div id="plotlyPie_star" class="col"></div>
+                    </div>
+                    <div class="row" style="margin-top:15px">
+                        <div id="plotlyBar_likeDislike" class="col"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-10" id="tableSummary"  style="margin-left:15px; margin-top:30px">
+                    <button onclick="downloadCSV()">Download this table</button>
+                    <table id="tableReview" class="table">
+                        <thead>
+                            <tr>
+                                <th>Item Name</th>
+                                <th>Review</th>
+                                <th>Overall Rating</th>
+                                <th>Like or Dislike</th>
+                                <th>Remove Row</th>
+                            </tr>
+                          </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
