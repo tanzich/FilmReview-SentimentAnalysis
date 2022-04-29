@@ -15,7 +15,7 @@ Our dashboard would allow researchers to gauge sentiment surrounding any topic t
 ## Website URL and PowerPoint
 Below is the link of a powerpoint presentation that summarizes our overall goals. 
 
-Currently, we have created a dashboard, that allows users to type in a message. From the provided message, we will attempt to tell whether it is a positive or negative message. We also show the emotions behind the message using a pie chart. Here is the link to our dashboard and our powerpoint: 
+Currently, we have created a dashboard, that allows users to type in a message. From the provided message, we will attempt to tell whether it is a positive or negative message. We also show the emotions behind the message using a pie chart. In the Review Page, users can review any Product/ Movies/ Tv shows from the drop down selection and receive a sentiment analysis behind their review. Here is the link to our dashboard and our powerpoint: 
 
 ### Dashboard link
 https://tanzich.github.io/FilmReview-SentimentAnalysis/template/
