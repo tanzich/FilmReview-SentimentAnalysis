@@ -21,7 +21,7 @@ Currently, we have created a dashboard, that allows users to type in a message. 
 https://tanzich.github.io/FilmReview-SentimentAnalysis/template/
 
 ### Powerpoint link
-https://docs.google.com/presentation/d/1WFZHx9kfErvZzy8OBKlEZ0egxSy-XMzn-hx8bBqm9Vg/edit?usp=sharing
+https://docs.google.com/presentation/d/1Irk6vE_QZY2x8vOh_v_vZHRYUL3BPchWXJThPz3UvWg/edit
 
 ## Workflow
 Below is an image, that shows our basic work flow. 
